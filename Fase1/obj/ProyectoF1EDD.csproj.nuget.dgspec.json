@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/fabro/Documentos/ProyectoF1EDD/ProyectoF1EDD.csproj": {}
+    "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/ProyectoF1EDD.csproj": {}
   },
   "projects": {
-    "/home/fabro/Documentos/ProyectoF1EDD/ProyectoF1EDD.csproj": {
+    "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/ProyectoF1EDD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fabro/Documentos/ProyectoF1EDD/ProyectoF1EDD.csproj",
+        "projectUniqueName": "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/ProyectoF1EDD.csproj",
         "projectName": "ProyectoF1EDD",
-        "projectPath": "/home/fabro/Documentos/ProyectoF1EDD/ProyectoF1EDD.csproj",
+        "projectPath": "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/ProyectoF1EDD.csproj",
         "packagesPath": "/home/fabro/.nuget/packages/",
-        "outputPath": "/home/fabro/Documentos/ProyectoF1EDD/obj/",
+        "outputPath": "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/fabro/.nuget/NuGet/NuGet.Config"

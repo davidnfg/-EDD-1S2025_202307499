@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Kl8qjuCwB4I=",
+  "dgSpecHash": "o+9smXbmoTw=",
   "success": true,
-  "projectFilePath": "/home/fabro/Documentos/ProyectoF1EDD/ProyectoF1EDD.csproj",
+  "projectFilePath": "/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/ProyectoF1EDD.csproj",
   "expectedPackageFiles": [
     "/home/fabro/.nuget/packages/atksharp/3.24.24.95/atksharp.3.24.24.95.nupkg.sha512",
     "/home/fabro/.nuget/packages/cairosharp/3.24.24.95/cairosharp.3.24.24.95.nupkg.sha512",
