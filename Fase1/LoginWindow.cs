@@ -25,7 +25,7 @@ namespace AutoGestPro
 
                 if (user == "root@gmail.com" && password == "root123")
                 {
-                    new MainWindow().ShowAll();
+                    new Menu().ShowAll();
                     this.Destroy();
                 }
                 else

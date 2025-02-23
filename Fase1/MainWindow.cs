@@ -1,42 +1,43 @@
-using System;
 using Gtk;
-using AutoGestPro.Models;
-using System.Collections.Generic;
 
-namespace AutoGestPro
+public class Menu : Window
 {
-    public class MainWindow : Window
+    public Menu() : base("Interface 1")
     {
-        private ListaUsuarios listaUsuarios = new ListaUsuarios();
+        SetDefaultSize(300, 200);
+        SetPosition(WindowPosition.Center);
 
-        public MainWindow() : base("AutoGest Pro")
-        {
-            SetDefaultSize(400, 300);
-            SetPosition(WindowPosition.Center);
+        // Crear un contenedor para los elementos
+        VBox vbox = new VBox(false, 5);
 
-            VBox vbox = new VBox(false, 5);
-            Label label = new Label("Bienvenido a AutoGest Pro");
-            Button btnCargar = new Button("Carga Masiva");
-            Button btnUsuarios = new Button("Ingreso Individual");
-            Button btnServicios = new Button("Generar Servicios");
-            Button btnFacturacion = new Button("Cancelar Factura");
-            Button btnSalir = new Button("Salir");
+        // Label
+        Label label = new Label("Menu");
+        vbox.PackStart(label, false, false, 0);
 
-            btnUsuarios.Clicked += (sender, e) => new UsuariosView(listaUsuarios).ShowAll();
-            btnCargar.Clicked += (sender, e) => new CargaMasivaWindow().ShowAll();
-            btnServicios.Clicked += (sender, e) => new ServiciosView().ShowAll();
-            btnFacturacion.Clicked += (sender, e) => new FacturaView().ShowAll();
-            btnSalir.Clicked += (sender, e) => Application.Quit();
 
-            vbox.PackStart(label, false, false, 5);
-            vbox.PackStart(btnCargar, false, false, 5);
-            vbox.PackStart(btnUsuarios, false, false, 5);
-            vbox.PackStart(btnServicios, false, false, 5);
-            vbox.PackStart(btnFacturacion, false, false, 5);
-            vbox.PackStart(btnSalir, false, false, 5);
+        // Cargar Archivo
+        Button Btn_CargaMasiva = new Button("Carga Masiva");
+        Btn_CargaMasiva.Clicked += GoCargaMasiva;
+        vbox.PackStart(Btn_CargaMasiva, false, false, 0);
 
-            Add(vbox);
-            DeleteEvent += delegate { Application.Quit(); };
-        }
+        // Insertar Manual
+        Button Btn_IngresoManual = new Button("Mostrar Lista");
+        Btn_IngresoManual.Clicked += GoIngresoManual;
+        vbox.PackStart(Btn_IngresoManual, false, false, 0);
+
+
+        Add(vbox);
     }
+
+    private void GoCargaMasiva(object sender, EventArgs e)
+    {
+        CargaMasiva cargaMasiva = new CargaMasiva();
+        cargaMasiva.ShowAll();
+    }
+
+    private void GoIngresoManual(object sender, EventArgs e)
+    {
+        ListaGlobal.Lista_Usuarios.Mostrar();
+    }
+
 }
