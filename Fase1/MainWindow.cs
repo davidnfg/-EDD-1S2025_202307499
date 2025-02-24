@@ -1,30 +1,47 @@
 using Gtk;
+using ListaDobleUnsafe;
 
 public class Menu : Window
 {
-    public Menu() : base("Interface 1")
+    public Menu() : base("Fase 1")
     {
-        SetDefaultSize(300, 200);
+        SetDefaultSize(400, 300);
         SetPosition(WindowPosition.Center);
+        ModifyBg(StateType.Normal, new Gdk.Color(200, 200, 200));
 
-        // Crear un contenedor para los elementos
-        VBox vbox = new VBox(false, 5);
+        VBox vbox = new VBox(false, 10);
+        vbox.BorderWidth = 20;
 
-        // Label
-        Label label = new Label("Menu");
-        vbox.PackStart(label, false, false, 0);
+        Label titleLabel = new Label("<b><span foreground='black' size='15000'>FASE 1</span></b>");
+        titleLabel.UseMarkup = true;
+        vbox.PackStart(titleLabel, false, false, 5);
 
+        Frame menuFrame = new Frame("Menu");
+        VBox menuVBox = new VBox(false, 5);
+        menuFrame.Add(menuVBox);
+        vbox.PackStart(menuFrame, false, false, 5);
 
-        // Cargar Archivo
-        Button Btn_CargaMasiva = new Button("Carga Masiva");
+        Button Btn_CargaMasiva = new Button("Cargas Masivas");
+        Btn_CargaMasiva.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
         Btn_CargaMasiva.Clicked += GoCargaMasiva;
-        vbox.PackStart(Btn_CargaMasiva, false, false, 0);
+        menuVBox.PackStart(Btn_CargaMasiva, false, false, 5);
 
-        // Insertar Manual
-        Button Btn_IngresoManual = new Button("Mostrar Lista");
+        Button Btn_IngresoManual = new Button("Ingreso Individual");
+        Btn_IngresoManual.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
         Btn_IngresoManual.Clicked += GoIngresoManual;
-        vbox.PackStart(Btn_IngresoManual, false, false, 0);
+        menuVBox.PackStart(Btn_IngresoManual, false, false, 5);
 
+        Button Btn_GestionUsuarios = new Button("Gestión de Usuarios");
+        Btn_GestionUsuarios.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        menuVBox.PackStart(Btn_GestionUsuarios, false, false, 5);
+
+        Button Btn_GenerarServicio = new Button("Generar Servicio");
+        Btn_GenerarServicio.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        menuVBox.PackStart(Btn_GenerarServicio, false, false, 5);
+
+        Button Btn_CancelarFactura = new Button("Cancelar Factura");
+        Btn_CancelarFactura.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        menuVBox.PackStart(Btn_CancelarFactura, false, false, 5);
 
         Add(vbox);
     }
@@ -36,8 +53,10 @@ public class Menu : Window
     }
 
     private void GoIngresoManual(object sender, EventArgs e)
-    {
+    {   
+        IngresoIndividual ingresoIndividual = new IngresoIndividual();
+        ingresoIndividual.ShowAll();
         ListaGlobal.Lista_Usuarios.Mostrar();
+        ListaGlobal.Lista_Vehiculos.Mostrar();
     }
-
 }
