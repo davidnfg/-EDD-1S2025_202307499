@@ -65,6 +65,39 @@ namespace ListaDobleUnsafe
             }
         }
 
+        public unsafe Node* BuscarUsuario(int id)
+        {
+            Node* actual = head;
+            while (actual != null)
+            {
+                if (actual->ID == id)
+                    return actual;
+                actual = actual->Next;
+            }
+            return null;
+        }   
+
+    public unsafe void ActualizarUsuario(int id, string nombres, string apellidos, string correo)
+        {
+            Node* actual = BuscarUsuario(id);
+            if (actual != null)
+            {
+                CopiarCadena(actual->Nombres, nombres, 50);
+                CopiarCadena(actual->Apellidos, apellidos, 50);
+                CopiarCadena(actual->Correo, correo, 100);
+            }
+        }
+
+        private unsafe void CopiarCadena(char* destino, string origen, int maxLength)
+        {
+            int length = Math.Min(origen.Length, maxLength - 1); // Máximo permitido sin el terminador
+            for (int i = 0; i < length; i++)
+            {
+                destino[i] = origen[i];
+            }
+            destino[length] = '\0'; // Agregar terminador nulo para evitar basura en la memoria
+        }
+
         public void MostrarReversa()
         {
             Node* actual = tail;

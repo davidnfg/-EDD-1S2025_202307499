@@ -57,33 +57,42 @@ public class GestionUsuarios : Window
         Add(vbox);
     }
     
-    private void OnBuscarClicked(object sender, EventArgs e)
-    {
-        int id;
-        if (int.TryParse(entryId.Text, out id))
+            private unsafe void OnBuscarClicked(object sender, EventArgs e)
         {
-            var usuario = ListaGlobal.Lista_Usuarios.Buscar(id);
-            if (usuario != null)
+            int id;
+            if (int.TryParse(entryId.Text, out id))
             {
-                entryNombre.Text = usuario->Nombre;
-                entryApellido.Text = usuario->Apellido;
-                entryCorreo.Text = usuario->Correo;
-            }
-            else
-            {
-                MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, "Usuario no encontrado.");
-                md.Run();
-                md.Destroy();
+                var usuario = ListaGlobal.Lista_Usuarios.BuscarUsuario(id);
+                if (usuario != null)
+                {
+                    entryNombre.Text = ConvertirCharArrayAString(usuario->Nombres, 50);
+                    entryApellido.Text = ConvertirCharArrayAString(usuario->Apellidos, 50);
+                    entryCorreo.Text = ConvertirCharArrayAString(usuario->Correo, 100);
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, "Usuario no encontrado.");
+                    md.Run();
+                    md.Destroy();
+                }
             }
         }
-    }
+
+        private unsafe string ConvertirCharArrayAString(char* buffer, int maxLength)
+        {
+            int length = 0;
+            while (length < maxLength && buffer[length] != '\0') length++; // Encontrar el final de la cadena
+
+            return new string(buffer, 0, length); // Crear string desde el puntero
+        }
+
     
     private void OnActualizarClicked(object sender, EventArgs e)
     {
         int id;
         if (int.TryParse(entryId.Text, out id))
         {
-            ListaGlobal.Lista_Usuarios.Actualizar(id, entryNombre.Text, entryApellido.Text, entryCorreo.Text);
+            ListaGlobal.Lista_Usuarios.ActualizarUsuario(id, entryNombre.Text, entryApellido.Text, entryCorreo.Text);
             MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, "Usuario actualizado correctamente.");
             md.Run();
             md.Destroy();

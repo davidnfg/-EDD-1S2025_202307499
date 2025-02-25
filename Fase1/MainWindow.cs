@@ -33,6 +33,7 @@ public class Menu : Window
 
         Button Btn_GestionUsuarios = new Button("Gestión de Usuarios");
         Btn_GestionUsuarios.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        Btn_GestionUsuarios.Clicked += GoGestionUsuarios;
         menuVBox.PackStart(Btn_GestionUsuarios, false, false, 5);
 
         Button Btn_GenerarServicio = new Button("Generar Servicio");
@@ -52,6 +53,11 @@ public class Menu : Window
         cargaMasiva.ShowAll();
     }
 
+    private void GoGestionUsuarios(object sender, EventArgs e)
+    {
+        GestionUsuarios gestionUsuarios = new GestionUsuarios();
+        gestionUsuarios.ShowAll();
+    }
     private void GoIngresoManual(object sender, EventArgs e)
     {   
         IngresoIndividual ingresoIndividual = new IngresoIndividual();
