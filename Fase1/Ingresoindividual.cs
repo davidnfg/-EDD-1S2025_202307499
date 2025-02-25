@@ -4,6 +4,8 @@ using ListaDobleUnsafe;
 public class IngresoIndividual : Window
 {
     private ListaDoblementeEnlazada listaUsuarios = ListaGlobal.Lista_Usuarios;
+    private ListaDEVehiculos listaVehiculos = ListaGlobal.Lista_Vehiculos;
+    private ListaDERep listaRepuestos = ListaGlobal.Lista_Repuestos;
 
     public IngresoIndividual() : base("Ingreso Individual")
     {
@@ -39,12 +41,12 @@ public class IngresoIndividual : Window
         }
         else if (seleccion == "Vehículo")
         {
-            IngresoVehiculo ingresoVehiculo = new IngresoVehiculo();
+            IngresoVehiculo ingresoVehiculo = new IngresoVehiculo(listaVehiculos);
             ingresoVehiculo.ShowAll();
         }
         else if (seleccion == "Repuesto")
         {
-            IngresoRepuesto ingresoRepuesto = new IngresoRepuesto();
+            IngresoRepuesto ingresoRepuesto = new IngresoRepuesto(listaRepuestos);
             ingresoRepuesto.ShowAll();
         }
     }

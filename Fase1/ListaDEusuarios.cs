@@ -75,6 +75,7 @@ namespace ListaDobleUnsafe
             }
         }
 
+
         ~ListaDoblementeEnlazada()
         {
             Node* actual = head;

@@ -36,8 +36,8 @@ namespace ListaDobleUnsafe
 {
     fixed (char* re = Repuesto, de = Detalles)
     {
-        string repuestoStr = new string(de);
-        string detallesStr = new string(re);
+        string repuestoStr = new string(re);
+        string detallesStr = new string(de);
 
         int repuestoLength = repuestoStr.IndexOf('\0');
         int detallesLength = detallesStr.IndexOf('\0');
@@ -45,10 +45,11 @@ namespace ListaDobleUnsafe
         if (repuestoLength == -1) repuestoLength = repuestoStr.Length;
         if (detallesLength == -1) detallesLength = detallesStr.Length;
 
+        return $"ID: {ID}, Repuesto: {repuestoStr.Substring(0, repuestoLength)}, Detalles: {detallesStr.Substring(0, detallesLength)}, Costo: Q{Costo}";
+    }
+}
+}
+}
 
-        return $"ID: {ID}, Repuesto: {repuestoStr.Substring(0, repuestoLength)}, Detalles: {detallesStr.Substring(0, detallesLength)}, Costo: {Costo}";
-    }
-}
-    }
-}
+
 

@@ -58,5 +58,6 @@ public class Menu : Window
         ingresoIndividual.ShowAll();
         ListaGlobal.Lista_Usuarios.Mostrar();
         ListaGlobal.Lista_Vehiculos.Mostrar();
+        ListaGlobal.Lista_Repuestos.Mostrar();
     }
 }
