@@ -5,7 +5,7 @@ namespace ListaDobleUnsafe
 {
     public unsafe class ListaDERep
 {
-    private NodeRep* head;
+    public NodeRep* head;
     private NodeRep* tail;
 
     public ListaDERep()
@@ -74,6 +74,12 @@ namespace ListaDobleUnsafe
             actual = (NodeRep*)actual->Prev;
         }
     }
+
+    public unsafe NodeRep* GetHead()
+        {
+            return head;
+        }
+
 
     ~ListaDERep()
     {

@@ -38,6 +38,7 @@ public class Menu : Window
 
         Button Btn_GenerarServicio = new Button("Generar Servicio");
         Btn_GenerarServicio.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        Btn_GenerarServicio.Clicked += GoGenerarServicio;
         menuVBox.PackStart(Btn_GenerarServicio, false, false, 5);
 
         Button Btn_CancelarFactura = new Button("Cancelar Factura");
@@ -53,6 +54,12 @@ public class Menu : Window
         cargaMasiva.ShowAll();
     }
 
+    private void GoGenerarServicio(object sender, EventArgs e)
+    {
+        GenerarServicio generarServicio = new GenerarServicio(ListaGlobal.Lista_Vehiculos, ListaGlobal.Lista_Repuestos, ListaGlobal.Lista_Servicios , ListaGlobal.Pila_Facturas);
+        generarServicio.ShowAll();
+    }
+
     private void GoGestionUsuarios(object sender, EventArgs e)
     {
         GestionUsuarios gestionUsuarios = new GestionUsuarios();
@@ -65,5 +72,8 @@ public class Menu : Window
         ListaGlobal.Lista_Usuarios.Mostrar();
         ListaGlobal.Lista_Vehiculos.Mostrar();
         ListaGlobal.Lista_Repuestos.Mostrar();
+        ListaGlobal.Lista_Servicios.Mostrar();
+        ListaGlobal.Pila_Facturas.Mostrar();
+
     }
 }

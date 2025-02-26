@@ -5,7 +5,7 @@ namespace ListaDobleUnsafe
 {
     public unsafe class ListaDEVehiculos
 {
-    private NodeVehi* head;
+    public NodeVehi* head;
     private NodeVehi* tail;
 
     public ListaDEVehiculos()
@@ -74,6 +74,11 @@ namespace ListaDobleUnsafe
             actual = (NodeVehi*)actual->Prev;
         }
     }
+    public unsafe NodeVehi* GetHead()
+    {
+        return head;
+    }
+
 
     ~ListaDEVehiculos()
     {
