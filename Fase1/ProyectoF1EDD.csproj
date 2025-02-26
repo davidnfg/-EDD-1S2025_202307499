@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Graphviz.Net" Version="1.0.0" />
     <PackageReference Include="GtkSharp" Version="3.24.24.95" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>

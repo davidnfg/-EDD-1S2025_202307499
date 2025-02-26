@@ -44,6 +44,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Graphviz.Net": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "GtkSharp": {
               "target": "Package",
               "version": "[3.24.24.95, )"

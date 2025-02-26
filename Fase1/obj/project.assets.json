@@ -59,6 +59,15 @@
           "lib/net6.0/GLibSharp.dll": {}
         }
       },
+      "GraphViz.NET/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/GraphVizWrapper.dll": {}
+        },
+        "runtime": {
+          "lib/net40/GraphVizWrapper.dll": {}
+        }
+      },
       "GtkSharp/3.24.24.95": {
         "type": "package",
         "dependencies": {
@@ -173,6 +182,21 @@
         "lib/netstandard2.0/GLibSharp.dll"
       ]
     },
+    "GraphViz.NET/1.0.0": {
+      "sha512": "NktgbJpuFezT2yDAOaPC4FlmUfHOcTQc7THJn7+e6yEJslrHTbVo3nz3mvlrUJwdbSF8lHRFUopSLA2Cuag2Zw==",
+      "type": "package",
+      "path": "graphviz.net/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/app.config.install.xdt",
+        "Content/web.config.install.xdt",
+        "graphviz.net.1.0.0.nupkg.sha512",
+        "graphviz.net.nuspec",
+        "lib/net40/GraphVizWrapper.dll",
+        "readme.txt"
+      ]
+    },
     "GtkSharp/3.24.24.95": {
       "sha512": "RRUY45hAa5gsMcadvVjcLUzMjVtmuHSYTcIwM6j8LNgKhzFFHk69qM1D5ULfGxaWmVjicqNWiFtOtk8WsvPqaQ==",
       "type": "package",
@@ -233,6 +257,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Graphviz.Net >= 1.0.0",
       "GtkSharp >= 3.24.24.95",
       "Newtonsoft.Json >= 13.0.3"
     ]
@@ -280,6 +305,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Graphviz.Net": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "GtkSharp": {
             "target": "Package",
             "version": "[3.24.24.95, )"
@@ -308,5 +337,17 @@
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"GraphViz.NET 1.0.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net9.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "GraphViz.NET",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

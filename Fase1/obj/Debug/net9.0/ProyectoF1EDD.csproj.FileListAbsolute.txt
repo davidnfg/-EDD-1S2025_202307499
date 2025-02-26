@@ -47,3 +47,4 @@
 /home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/obj/Debug/net9.0/ProyectoF1EDD.pdb
 /home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/obj/Debug/net9.0/ProyectoF1EDD.genruntimeconfig.cache
 /home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/obj/Debug/net9.0/ref/ProyectoF1EDD.dll
+/home/fabro/Documentos/[EDD]1S2025_202307499/Fase1/bin/Debug/net9.0/GraphVizWrapper.dll

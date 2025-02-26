@@ -48,6 +48,7 @@ public class Menu : Window
 
         Button Btn_GenerarReporte = new Button("Generar Reporte");
         Btn_GenerarReporte.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        Btn_GenerarReporte.Clicked += GoGenerarReporte;
         menuVBox.PackStart(Btn_GenerarReporte, false, false, 5);
 
         Add(vbox);
@@ -86,5 +87,15 @@ public class Menu : Window
         ListaGlobal.Lista_Servicios.Mostrar();
         ListaGlobal.Pila_Facturas.Mostrar();
 
+    }
+
+    private void GoGenerarReporte(object sender, EventArgs e)
+    {
+        Reporte.GenerarReporteGeneral();
+        Reporte.GenerarReporteUsuarios();
+        Reporte.GenerarReporteVehiculos();
+        MessageDialog dialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, "Reporte generado exitosamente");
+        dialog.Run();
+        dialog.Destroy();
     }
 }

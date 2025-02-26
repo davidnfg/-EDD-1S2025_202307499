@@ -79,7 +79,32 @@ namespace ListaDobleUnsafe
         return head;
     }
 
+    public string GenerarDot()
+        {
+            if (head == null)
+                return "";
 
+            string dot = "";
+            NodeVehi* actual = head;
+
+            while (actual != null)
+            {
+                string marca = new string(actual->Marca, 0, 50).TrimEnd('\0');
+                string placa = new string(actual->Placa, 0, 50).TrimEnd('\0');
+
+                dot += $"    {actual->ID} [label=\"ID: {actual->ID}\\nID_Usuario: {actual->ID_Usuario}\\nMarca: {marca}\\nModelo: {actual->Modelo}\\nPlaca: {placa}\"];\n";
+
+                if (actual->Next != null)
+                {
+                    dot += $"    {actual->ID} -> {actual->Next->ID};\n";
+                    dot += $"    {actual->Next->ID} -> {actual->ID};\n"; // Conexión doble
+                }
+
+                actual = actual->Next;
+            }
+
+            return dot;
+        }
     ~ListaDEVehiculos()
     {
         NodeVehi* actual = head;

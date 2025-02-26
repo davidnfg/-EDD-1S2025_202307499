@@ -108,7 +108,35 @@ namespace ListaDobleUnsafe
             }
         }
 
+        public unsafe Node* GetHead()
+    {
+        return head;
+    }
 
+    public string GenerarDot()
+        {
+            if (head == null)
+                return "";
+
+            string dot = "";
+            Node* actual = head;
+
+            while (actual != null)
+            {
+                string nombres = new string(actual->Nombres);
+                string apellidos = new string(actual->Apellidos);
+
+                dot += $"    {actual->ID} [label=\"ID: {actual->ID}\\n{nombres} {apellidos}\"];\n";
+                if (actual->Next != null)
+                {
+                    dot += $"    {actual->ID} -> {actual->Next->ID};\n";
+                    dot += $"    {actual->Next->ID} -> {actual->ID};\n"; // Conexión doble
+                }
+                actual = actual->Next;
+            }
+
+            return dot;
+        }
         ~ListaDoblementeEnlazada()
         {
             Node* actual = head;
