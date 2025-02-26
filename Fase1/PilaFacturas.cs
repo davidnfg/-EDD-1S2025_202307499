@@ -12,13 +12,12 @@ namespace ListaDobleUnsafe
             top = null;
         }
 
-        public void Push(int id, int idOrden, double costoTotal)
+        public void Push(int id, int idOrden, double total)
         {
-            NodoFac* nuevoNodo = (NodoFac*)NativeMemory.Alloc((nuint)sizeof(NodoFac));
-            *nuevoNodo = new NodoFac(id, idOrden, costoTotal);
-
-            nuevoNodo->Next = top;
-            top = nuevoNodo;
+        NodoFac* nuevaFactura = (NodoFac*)NativeMemory.Alloc((nuint)sizeof(NodoFac));
+        *nuevaFactura = new NodoFac(id, idOrden, total);
+        nuevaFactura->Next = top;
+        top = nuevaFactura;
         }
 
         public NodoFac* Pop()
@@ -30,6 +29,11 @@ namespace ListaDobleUnsafe
             top = top->Next;
             return nodo;
         }
+
+        public NodoFac* Peek()
+            {
+             return top;
+            }
 
         public void Mostrar()
         {

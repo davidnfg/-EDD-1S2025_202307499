@@ -7,7 +7,7 @@ namespace AutoGestPro
     {
         public LoginWindow() : base("Inicio de Sesión")
         {
-            SetDefaultSize(300, 200);
+            SetDefaultSize(300, 350);
             SetPosition(WindowPosition.Center);
 
             VBox vbox = new VBox(false, 5);

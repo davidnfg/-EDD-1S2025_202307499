@@ -5,7 +5,7 @@ public class Menu : Window
 {
     public Menu() : base("Fase 1")
     {
-        SetDefaultSize(400, 300);
+        SetDefaultSize(300, 500);
         SetPosition(WindowPosition.Center);
         ModifyBg(StateType.Normal, new Gdk.Color(200, 200, 200));
 
@@ -43,7 +43,12 @@ public class Menu : Window
 
         Button Btn_CancelarFactura = new Button("Cancelar Factura");
         Btn_CancelarFactura.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        Btn_CancelarFactura.Clicked += GoFactura;
         menuVBox.PackStart(Btn_CancelarFactura, false, false, 5);
+
+        Button Btn_GenerarReporte = new Button("Generar Reporte");
+        Btn_GenerarReporte.ModifyBg(StateType.Normal, new Gdk.Color(50, 205, 50));
+        menuVBox.PackStart(Btn_GenerarReporte, false, false, 5);
 
         Add(vbox);
     }
@@ -64,6 +69,12 @@ public class Menu : Window
     {
         GestionUsuarios gestionUsuarios = new GestionUsuarios();
         gestionUsuarios.ShowAll();
+    }
+
+    private void GoFactura(object sender, EventArgs e)
+    {
+        Factura factura = new Factura(ListaGlobal.Pila_Facturas);
+        factura.ShowAll();
     }
     private void GoIngresoManual(object sender, EventArgs e)
     {   
