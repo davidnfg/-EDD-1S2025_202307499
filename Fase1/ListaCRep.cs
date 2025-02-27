@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using ListaDobleUnsafe;
 
 namespace ListaDobleUnsafe
 {
@@ -95,6 +96,47 @@ namespace ListaDobleUnsafe
         {
             return head;
         }
+
+        public unsafe string GenerarDot()
+        {
+            if (head == null)
+                return "";
+
+            string dot = "digraph ReporteRepuestos {\n";
+            dot += "    rankdir=LR;\n";
+            dot += "    node [shape=record];\n";
+
+            NodeRep* actual = head;
+            NodeRep* primero = head; // Guardamos referencia al primero
+            do
+            {
+                string repuestoStr = new string(actual->Repuesto, 0, 50).TrimEnd('\0');
+                string detallesStr = new string(actual->Detalles, 0, 350).TrimEnd('\0');
+
+                dot += $"    {actual->ID} [label=\"{{ID: {actual->ID} | Repuesto: {repuestoStr} | Detalles: {detallesStr} | Costo: {actual->Costo}}}\"];\n";
+
+                actual = actual->Next;
+            } while (actual != head);
+
+            // Agregar conexiones en forma lineal y cerrar ciclo
+            actual = head;
+            do
+            {
+                if (actual->Next != null)
+                {
+                    dot += $"    {actual->ID} -> {actual->Next->ID};\n";
+                }
+                actual = actual->Next;
+            } while (actual->Next != head);
+
+            // Último nodo apunta al primero para cerrar ciclo
+            dot += $"    {actual->ID} -> {primero->ID};\n";
+
+            dot += "}\n";
+            return dot;
+        }
+
+
 
         ~ListaDERep()
         {

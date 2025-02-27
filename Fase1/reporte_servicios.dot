@@ -1,0 +1,7 @@
+digraph ColaServicios {
+    rankdir=LR;
+    node [shape=record];
+    Nodo1 [label="{ID: 1 | ID_Repuesto: 1 | ID_Vehiculo: 1 | Detalles: Cambio de motor | Costo: Q500}"];
+    Nodo1 -> Nodo2;
+    Nodo2 [label="{ID: 2 | ID_Repuesto: 2 | ID_Vehiculo: 2 | Detalles: Cambio de pastillas | Costo: Q250}"];
+}

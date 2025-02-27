@@ -1,0 +1,7 @@
+digraph PilaFacturas {
+    rankdir=TB;
+    node [shape=record];
+    Nodo2 [label="{ID: 2 | ID_Orden: 2 | Total: Q265.75}"];
+    Nodo2 -> Nodo1;
+    Nodo1 [label="{ID: 1 | ID_Orden: 1 | Total: Q525.5}"];
+}

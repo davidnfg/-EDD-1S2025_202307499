@@ -94,6 +94,9 @@ public class Menu : Window
         Reporte.GenerarReporteGeneral();
         Reporte.GenerarReporteUsuarios();
         Reporte.GenerarReporteVehiculos();
+        Reporte.GenerarReporteRepuestos();
+        Reporte.GenerarReporteServicios();
+        Reporte.GenerarReporteFacturacion();
         MessageDialog dialog = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, "Reporte generado exitosamente");
         dialog.Run();
         dialog.Destroy();

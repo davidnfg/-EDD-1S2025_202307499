@@ -45,6 +45,30 @@ namespace ListaDobleUnsafe
             }
         }
 
+        public unsafe string GenerarDot()
+        {
+            string dot = "digraph PilaFacturas {\n";
+            dot += "    rankdir=TB;\n";
+            dot += "    node [shape=record];\n";
+
+            NodoFac* actual = top;
+            while (actual != null)
+            {
+                dot += $"    Nodo{actual->ID} [label=\"{{ID: {actual->ID} | ID_Orden: {actual->ID_orden} | Total: Q{actual->CostoTotal}}}\"];\n";
+
+                if (actual->Next != null)
+                {
+                    dot += $"    Nodo{actual->ID} -> Nodo{actual->Next->ID};\n";
+                }
+
+                actual = actual->Next;
+            }
+
+            dot += "}";
+            return dot;
+        }
+
+
         ~PilaFacturas()
         {
             while (top != null)

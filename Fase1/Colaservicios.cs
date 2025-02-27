@@ -65,7 +65,31 @@ namespace ListaDobleUnsafe
         {
             return head;
         }
+        
+        public unsafe string GenerarDot()
+        {
+            string dot = "digraph ColaServicios {\n";
+            dot += "    rankdir=LR;\n";
+            dot += "    node [shape=record];\n";
 
+            NodoServi* actual = head;
+            while (actual != null)
+            {
+                dot += $"    Nodo{actual->ID} [label=\"{{ID: {actual->ID} | ID_Repuesto: {actual->ID_repuesto} | ID_Vehiculo: {actual->ID_vehiculo} | Detalles: {new string(actual->Detalles)} | Costo: Q{actual->CostoServi}}}\"];\n";
+
+                if (actual->Next != null)
+                {
+                    dot += $"    Nodo{actual->ID} -> Nodo{actual->Next->ID};\n";
+                }
+
+                actual = actual->Next;
+            }
+
+            dot += "}";
+            return dot;
+        }
+
+        
         ~ColaServicios()
         {
             NodoServi* actual = head;

@@ -1,0 +1,35 @@
+digraph ReporteRepuestos {
+    rankdir=LR;
+    node [shape=record];
+    1 [label="{ID: 1 | Repuesto: Filtro de aceite | Detalles: Filtra impurezas del aceite del motor. | Costo: 25.5}"];
+    2 [label="{ID: 2 | Repuesto: Bujías | Detalles: Componente esencial para encender la mezcla de aire y combustible. | Costo: 15.75}"];
+    3 [label="{ID: 3 | Repuesto: Frenos delanteros | Detalles: Piezas para frenar el vehículo en la parte delantera. | Costo: 60}"];
+    4 [label="{ID: 4 | Repuesto: Pastillas de freno traseras | Detalles: Piezas para frenar el vehículo en la parte trasera. | Costo: 45.3}"];
+    5 [label="{ID: 5 | Repuesto: Amortiguadores | Detalles: Componente de suspensión para absorber impactos. | Costo: 95.2}"];
+    6 [label="{ID: 6 | Repuesto: Aceite de motor | Detalles: Lubricante para el motor del vehículo. | Costo: 18.6}"];
+    7 [label="{ID: 7 | Repuesto: Filtro de aire | Detalles: Filtra el aire que entra al motor para mejorar la combustión. | Costo: 22.1}"];
+    8 [label="{ID: 8 | Repuesto: Correa de distribución | Detalles: Componente que sincroniza el motor. | Costo: 80}"];
+    9 [label="{ID: 9 | Repuesto: Radiador | Detalles: Sistema para mantener el motor a temperatura adecuada. | Costo: 150}"];
+    10 [label="{ID: 10 | Repuesto: Batería | Detalles: Fuente de energía para el vehículo. | Costo: 100.5}"];
+    11 [label="{ID: 11 | Repuesto: Cables de encendido | Detalles: Conducen energía desde la batería a las bujías. | Costo: 30.4}"];
+    12 [label="{ID: 12 | Repuesto: Espejos laterales | Detalles: Espejos para una mejor visibilidad en el vehículo. | Costo: 50}"];
+    13 [label="{ID: 13 | Repuesto: Manguera de radiador | Detalles: Transporta el líquido refrigerante en el sistema de enfriamiento. | Costo: 20.8}"];
+    14 [label="{ID: 14 | Repuesto: Suspensión trasera | Detalles: Sistema que absorbe impactos en la parte trasera del vehículo. | Costo: 120}"];
+    15 [label="{ID: 15 | Repuesto: Bombas de freno | Detalles: Componente que genera presión para accionar los frenos. | Costo: 75}"];
+    1 -> 2;
+    2 -> 3;
+    3 -> 4;
+    4 -> 5;
+    5 -> 6;
+    6 -> 7;
+    7 -> 8;
+    8 -> 9;
+    9 -> 10;
+    10 -> 11;
+    11 -> 12;
+    12 -> 13;
+    13 -> 14;
+    14 -> 15;
+    15 -> 1;
+}
+

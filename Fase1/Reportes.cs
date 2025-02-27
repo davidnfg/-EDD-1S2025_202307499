@@ -52,6 +52,44 @@ public class Reporte
         }
         EjecutarGraphviz(filePath, "reporte_vehiculos.png");
     }
+    
+    public static void GenerarReporteRepuestos()
+    {
+        string filePath = "reporte_repuestos.dot";
+        using (StreamWriter sw = new StreamWriter(filePath))
+        {
+            sw.WriteLine(ListaGlobal.Lista_Repuestos.GenerarDot());
+        }
+        EjecutarGraphviz(filePath, "reporte_repuestos.png");
+    }
+
+    public static void GenerarReporteServicios()
+    {
+        string filePath = "reporte_servicios.dot";
+        using (StreamWriter sw = new StreamWriter(filePath))
+        {
+
+            
+            sw.WriteLine(ListaGlobal.Cola_Servicios.GenerarDot());
+            
+
+        }
+        EjecutarGraphviz(filePath, "reporte_servicios.png");
+    }
+
+    public static void GenerarReporteFacturacion()
+    {
+        string filePath = "reporte_facturacion.dot";
+        using (StreamWriter sw = new StreamWriter(filePath))
+        {
+            
+            
+            sw.WriteLine(ListaGlobal.Pila_Facturas.GenerarDot());
+            
+    
+        }
+        EjecutarGraphviz(filePath, "reporte_facturacion.png");
+    }
 
     private static void EjecutarGraphviz(string dotFilePath, string outputFilePath)
     {
@@ -62,6 +100,19 @@ public class Reporte
         process.StartInfo.RedirectStandardOutput = true;
         process.StartInfo.RedirectStandardError = true;
         process.Start();
+
+        string output = process.StandardOutput.ReadToEnd();
+        string error = process.StandardError.ReadToEnd();
+
         process.WaitForExit();
+
+        if (process.ExitCode != 0)
+        {
+            Console.WriteLine($"Error al ejecutar Graphviz: {error}");
+        }
+        else
+        {
+            Console.WriteLine($"Graphviz ejecutado correctamente: {output}");
+        }
     }
 }
