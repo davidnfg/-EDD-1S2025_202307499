@@ -7,15 +7,15 @@ public class GenerarServicio : Window
     private Entry entryId, entryIdRepuesto, entryIdVehiculo, entryDetalles, entryCostoS;
     private Button btnGuardar;
     private ListaDEVehiculos listaVehiculos;
-    private ListaDEservicios listaServicios;
+    private ColaServicios colaServicios;
     private ListaDERep listaRepuestos;
     private PilaFacturas pilaFacturas; // NUEVO: Agregamos la pila de facturas
 
-    public GenerarServicio(ListaDEVehiculos vehiculos, ListaDERep repuestos, ListaDEservicios servicios, PilaFacturas facturas) : base("Crear Servicio")
+    public GenerarServicio(ListaDEVehiculos vehiculos, ListaDERep repuestos, ColaServicios servicios, PilaFacturas facturas) : base("Crear Servicio")
     {
         listaVehiculos = vehiculos;
         listaRepuestos = repuestos;
-        listaServicios = servicios;
+        colaServicios = servicios;
         pilaFacturas = facturas; // Asignamos la pila
 
         SetDefaultSize(300, 250);
@@ -82,7 +82,7 @@ public class GenerarServicio : Window
         double costoTotal = costoS + costoRepuesto;
 
         // Insertar servicio en la lista
-        listaServicios.Insertar(id, idRepuesto, idVehiculo, entryDetalles.Text, costoS);
+        colaServicios.Insertar(id, idRepuesto, idVehiculo, entryDetalles.Text, costoS);
 
         // Insertar factura en la pila
         pilaFacturas.Push(id, id, costoTotal);

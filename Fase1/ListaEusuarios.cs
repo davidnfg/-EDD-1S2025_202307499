@@ -3,12 +3,12 @@ using System.Runtime.InteropServices;
 
 namespace ListaDobleUnsafe
 {
-    public unsafe class ListaDoblementeEnlazada
+    public unsafe class ListaEnlazadaSimple
     {
         private Node* head;
         private Node* tail;
 
-        public ListaDoblementeEnlazada()
+        public ListaEnlazadaSimple()
         {
             head = null;
             tail = null;
@@ -26,7 +26,6 @@ namespace ListaDobleUnsafe
             else
             {
                 tail->Next = nuevoNodo;
-                nuevoNodo->Prev = tail;
                 tail = nuevoNodo;
             }
         }
@@ -34,23 +33,24 @@ namespace ListaDobleUnsafe
         public void Eliminar(int id)
         {
             Node* actual = head;
+            Node* anterior = null;
+
             while (actual != null)
             {
                 if (actual->ID == id)
                 {
-                    if (actual->Prev != null)
-                        actual->Prev->Next = actual->Next;
+                    if (anterior != null)
+                        anterior->Next = actual->Next;
                     else
                         head = actual->Next;
 
-                    if (actual->Next != null)
-                        actual->Next->Prev = actual->Prev;
-                    else
-                        tail = actual->Prev;
+                    if (actual == tail)
+                        tail = anterior;
 
                     NativeMemory.Free(actual);
                     return;
                 }
+                anterior = actual;
                 actual = actual->Next;
             }
         }
@@ -75,9 +75,9 @@ namespace ListaDobleUnsafe
                 actual = actual->Next;
             }
             return null;
-        }   
+        }
 
-    public unsafe void ActualizarUsuario(int id, string nombres, string apellidos, string correo)
+        public unsafe void ActualizarUsuario(int id, string nombres, string apellidos, string correo)
         {
             Node* actual = BuscarUsuario(id);
             if (actual != null)
@@ -98,22 +98,12 @@ namespace ListaDobleUnsafe
             destino[length] = '\0'; // Agregar terminador nulo para evitar basura en la memoria
         }
 
-        public void MostrarReversa()
+        public unsafe Node* GetHead()
         {
-            Node* actual = tail;
-            while (actual != null)
-            {
-                Console.WriteLine(actual->ToString());
-                actual = actual->Prev;
-            }
+            return head;
         }
 
-        public unsafe Node* GetHead()
-    {
-        return head;
-    }
-
-    public string GenerarDot()
+        public string GenerarDot()
         {
             if (head == null)
                 return "";
@@ -130,14 +120,14 @@ namespace ListaDobleUnsafe
                 if (actual->Next != null)
                 {
                     dot += $"    {actual->ID} -> {actual->Next->ID};\n";
-                    dot += $"    {actual->Next->ID} -> {actual->ID};\n"; // Conexión doble
                 }
                 actual = actual->Next;
             }
 
             return dot;
         }
-        ~ListaDoblementeEnlazada()
+
+        ~ListaEnlazadaSimple()
         {
             Node* actual = head;
             while (actual != null)

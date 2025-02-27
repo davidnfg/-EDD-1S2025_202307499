@@ -4,11 +4,11 @@ using ListaDobleUnsafe;
 public class IngresoUsuario : Window
 {
     private Entry entryId, entryNombres, entryApellidos, entryCorreo, entryContrasenia;
-    private ListaDoblementeEnlazada listaUsuarios;
+    private ListaEnlazadaSimple listaUsuarios;
     private ListaDEVehiculos listaVehiculos;
     private ListaDERep listaRepuestos;
 
-    public IngresoUsuario(ListaDoblementeEnlazada lista) : base("Ingreso de Usuario")
+    public IngresoUsuario(ListaEnlazadaSimple lista) : base("Ingreso de Usuario")
     {
         listaUsuarios = lista;
         SetDefaultSize(300, 250);

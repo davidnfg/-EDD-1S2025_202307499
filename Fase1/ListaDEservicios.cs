@@ -1,94 +1,80 @@
 using System;
 using System.Runtime.InteropServices;
+using ListaDobleUnsafe;
 
 namespace ListaDobleUnsafe
 {
-    public unsafe class ListaDEservicios
-{
-    public NodoServi* head;
-    private NodoServi* tail;
-
-    public ListaDEservicios()
+    public unsafe class ColaServicios
     {
-        head = null;
-        tail = null;
-    }
+        public NodoServi* head;
+        private NodoServi* tail;
 
-    public void Insertar(int id, int id_repuesto, int id_vehiculo, string detalles, double costoS)
-    {
-        NodoServi* nuevoNodo = (NodoServi*)NativeMemory.Alloc((nuint)sizeof(NodoServi));
-        *nuevoNodo = new NodoServi(id, id_repuesto, id_vehiculo, detalles, costoS);
-
-        if (head == null)
+        public ColaServicios()
         {
-            head = tail = nuevoNodo;
+            head = null;
+            tail = null;
         }
-        else
-        {
-            tail->Next = (NodoServi*)nuevoNodo;
-            nuevoNodo->Prev = (NodoServi*)tail;
-            tail = nuevoNodo;
-        }
-    }
 
-    public void Eliminar(int id)
-    {
-        NodoServi* actual = head;
-        while (actual != null)
+        public void Enqueue(int id, int id_repuesto, int id_vehiculo, string detalles, double costoS)
         {
-            if (actual->ID == id)
+            NodoServi* nuevoNodo = (NodoServi*)NativeMemory.Alloc((nuint)sizeof(NodoServi));
+            *nuevoNodo = new NodoServi(id, id_repuesto, id_vehiculo, detalles, costoS);
+
+            if (head == null)
             {
-                if (actual->Prev != null)
-                    ((NodoServi*)actual->Prev)->Next = actual->Next;
-                else
-                    head = (NodoServi*)actual->Next;
-
-                if (actual->Next != null)
-                    ((NodoServi*)actual->Next)->Prev = actual->Prev;
-                else
-                    tail = (NodoServi*)actual->Prev;
-
-                NativeMemory.Free(actual);
-                return;
+                head = tail = nuevoNodo;
             }
-            actual = (NodoServi*)actual->Next;
+            else
+            {
+                tail->Next = nuevoNodo;
+                tail = nuevoNodo;
+            }
         }
-    }
 
-    public void Mostrar()
-    {
-        NodoServi* actual = head;
-        while (actual != null)
+        public void Dequeue()
         {
-            Console.WriteLine(actual->ToString());
-            actual = (NodoServi*)actual->Next;
-        }
-    }
+            if (head == null) return;
 
-    public void MostrarReversa()
-    {
-        NodoServi* actual = tail;
-        while (actual != null)
-        {
-            Console.WriteLine(actual->ToString());
-            actual = (NodoServi*)actual->Prev;
-        }
-    }
-    public unsafe NodoServi* GetHead()
-    {
-        return head;
-    }
+            NodoServi* temp = head;
+            head = head->Next;
 
+            if (head == null)
+            {
+                tail = null;
+            }
 
-    ~ListaDEservicios()
-    {
-        NodoServi* actual = head;
-        while (actual != null)
-        {
-            NodoServi* temp = actual;
-            actual = (NodoServi*)actual->Next;
             NativeMemory.Free(temp);
         }
+
+        public void Mostrar()
+        {
+            NodoServi* actual = head;
+            while (actual != null)
+            {
+                Console.WriteLine(actual->ToString());
+                actual = actual->Next;
+            }
+        }
+
+        public void Insertar(int id, int idRepuesto, int idVehiculo, string detalles, double costo)
+        {
+            Enqueue(id, idRepuesto, idVehiculo, detalles, costo);
+        }
+
+        public unsafe NodoServi* GetHead()
+        {
+            return head;
+        }
+
+        ~ColaServicios()
+        {
+            NodoServi* actual = head;
+            while (actual != null)
+            {
+                NodoServi* temp = actual;
+                actual = actual->Next;
+                NativeMemory.Free(temp);
+            }
+        }
     }
-}
 }

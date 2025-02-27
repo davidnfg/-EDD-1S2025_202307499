@@ -62,7 +62,7 @@ public class Menu : Window
 
     private void GoGenerarServicio(object sender, EventArgs e)
     {
-        GenerarServicio generarServicio = new GenerarServicio(ListaGlobal.Lista_Vehiculos, ListaGlobal.Lista_Repuestos, ListaGlobal.Lista_Servicios , ListaGlobal.Pila_Facturas);
+        GenerarServicio generarServicio = new GenerarServicio(ListaGlobal.Lista_Vehiculos, ListaGlobal.Lista_Repuestos, ListaGlobal.Cola_Servicios , ListaGlobal.Pila_Facturas);
         generarServicio.ShowAll();
     }
 
@@ -84,7 +84,7 @@ public class Menu : Window
         ListaGlobal.Lista_Usuarios.Mostrar();
         ListaGlobal.Lista_Vehiculos.Mostrar();
         ListaGlobal.Lista_Repuestos.Mostrar();
-        ListaGlobal.Lista_Servicios.Mostrar();
+        ListaGlobal.Cola_Servicios.Mostrar();
         ListaGlobal.Pila_Facturas.Mostrar();
 
     }

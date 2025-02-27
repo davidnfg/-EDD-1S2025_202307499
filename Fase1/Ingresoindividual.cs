@@ -3,7 +3,7 @@ using ListaDobleUnsafe;
 
 public class IngresoIndividual : Window
 {
-    private ListaDoblementeEnlazada listaUsuarios = ListaGlobal.Lista_Usuarios;
+    private ListaEnlazadaSimple listaUsuarios = ListaGlobal.Lista_Usuarios;
     private ListaDEVehiculos listaVehiculos = ListaGlobal.Lista_Vehiculos;
     private ListaDERep listaRepuestos = ListaGlobal.Lista_Repuestos;
 
