@@ -1,7 +1,7 @@
 using Gtk;
 using System;
 using System.IO;
-using Newtonsoft.Json;  //Para instalar esto se utiliza el comando "dotnet add package Newtonsoft.Json"
+using Newtonsoft.Json; 
 
 public class CargaMasiva : Window
 {
