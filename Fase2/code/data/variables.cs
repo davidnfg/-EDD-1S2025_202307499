@@ -11,10 +11,12 @@ namespace code.data
 {
     public static class Variables
     {
-
+        //Usuario Logueado
+        public static Nodo_Usuario usuarioActual = new Nodo_Usuario(0, "", "", "", 0, "");
+        public static string entrada = "";
+        public static string salida = "";
         // Usuarios
         public static ListaEnlazada listaUsuarios = new ListaEnlazada(); 
-        public static Nodo_Usuario usuarioActual = new Nodo_Usuario(0, "", "", "", 0, "");
 
         // Vehiculos
         public static ListaDoble listaVehiculos = new ListaDoble();
@@ -28,7 +30,7 @@ namespace code.data
         public static ArbolBinario arbolServicios = new ArbolBinario();
 
         //Facturas
-        public static BTree arbolFacturas = new BTree();
+        public static ArbolB arbolFacturas = new ArbolB();
         
     }
 }

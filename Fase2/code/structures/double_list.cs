@@ -168,6 +168,23 @@ namespace code.structures.double_list{
             }
             return false;
         }
+
+        public List<int> ListarVehiculos_Usuario(int idUsuario)
+        {
+            List<int> listaVehiculos = new List<int>();
+            Nodo_Vehiculos actual = cabeza;
+            
+            while (actual != null)
+            {
+                if (actual.IdUsuario == idUsuario)
+                {
+                    listaVehiculos.Add(actual.Id);
+                }
+                actual = actual.Siguiente;
+            }
+            
+            return listaVehiculos;
+        }
     
     }
 }

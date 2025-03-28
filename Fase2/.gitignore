@@ -24,5 +24,5 @@ project.nuget.cache
 # Archivos de reportes generados
 /reports/*.dot
 /reports/*.png
-
+/reports/*.json
 # Archivos específicos de otros entornos (puedes añadir más si tienes otros específicos)

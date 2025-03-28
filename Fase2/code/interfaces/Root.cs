@@ -73,16 +73,8 @@ namespace code.interfaces
 
         private void OnGenerarSButtonClicked(object sender, EventArgs e)
         {
-            code.data.Variables.arbolServicios.Insertar(5, 1005, 2005, "Filtro de aire", 20.00);    
-            code.data.Variables.arbolServicios.Insertar(3, 1003, 2003, "Pastillas de freno", 45.99);
-            code.data.Variables.arbolServicios.Insertar(7, 1007, 2007, "Batería", 75.00);           
-            code.data.Variables.arbolServicios.Insertar(1, 1001, 2001, "Filtro de aceite", 25.50);  
-            code.data.Variables.arbolServicios.Insertar(4, 1004, 2004, "Aceite motor", 35.00);      
-            code.data.Variables.arbolServicios.Insertar(6, 1006, 2006, "Líquido de frenos", 10.50); 
-            code.data.Variables.arbolServicios.Insertar(9, 1009, 2009, "Neumático", 100.00);        
-            code.data.Variables.arbolServicios.Insertar(2, 1002, 2002, "Bujía", 15.75);             
-            code.data.Variables.arbolServicios.Insertar(8, 1008, 2008, "Lámpara", 5.25);            
-            code.data.Variables.arbolServicios.Insertar(10, 1010, 2010, "Escobillas", 12.00);
+            GenerarServicios generarServicios = new GenerarServicios();
+            generarServicios.Show();
         }
 
         private void OnVrepuestosButtonClicked(object sender, EventArgs e)
@@ -115,6 +107,11 @@ namespace code.interfaces
             string CodigoDot_Servicios = code.data.Variables.arbolServicios.GraficarGraphviz();
             code.utils.Utilidades.GenerarArchivoDot("Servicios", CodigoDot_Servicios);
             code.utils.Utilidades.ConvertirDotAImagen("Servicios.dot");
+
+            //Facturas
+            string CodigoDot_Facturas = code.data.Variables.arbolFacturas.GraficarGraphviz();
+            code.utils.Utilidades.GenerarArchivoDot("Facturas", CodigoDot_Facturas);
+            code.utils.Utilidades.ConvertirDotAImagen("Facturas.dot");
         }
 
 

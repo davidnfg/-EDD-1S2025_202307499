@@ -198,10 +198,115 @@ namespace code.structures.tree_binary
             }
         }
 
+        // TablaInOrden_Vehiculos
+        public List<Nodo_Servicio> TablaInOrden_Vehiculos(List<int> idsVehiculos)
+        {
+            List<Nodo_Servicio> resultado = new List<Nodo_Servicio>();
+            InOrdenVehiculosRecursivo(raiz, resultado, idsVehiculos);
+            return resultado;
+        }
 
-    }
+        private void InOrdenVehiculosRecursivo(Nodo_Servicio nodo, List<Nodo_Servicio> resultado, List<int> idsVehiculos)
+        {
+            if (nodo != null)
+            {
+                InOrdenVehiculosRecursivo(nodo.Izquierda, resultado, idsVehiculos);
+                if (idsVehiculos.Contains(nodo.Id_Vehiculo))
+                    resultado.Add(nodo);
+                InOrdenVehiculosRecursivo(nodo.Derecha, resultado, idsVehiculos);
+            }
+        }
 
 
 
 
+        // TablaPreOrden_Vehiculos
+        public List<Nodo_Servicio> TablaPreOrden_Vehiculos(List<int> idsVehiculos)
+        {
+            List<Nodo_Servicio> resultado = new List<Nodo_Servicio>();
+            PreOrdenVehiculosRecursivo(raiz, resultado, idsVehiculos);
+            return resultado;
+        }
+
+        private void PreOrdenVehiculosRecursivo(Nodo_Servicio nodo, List<Nodo_Servicio> resultado, List<int> idsVehiculos)
+        {
+            if (nodo != null)
+            {
+                if (idsVehiculos.Contains(nodo.Id_Vehiculo))
+                    resultado.Add(nodo);
+                PreOrdenVehiculosRecursivo(nodo.Izquierda, resultado, idsVehiculos);
+                PreOrdenVehiculosRecursivo(nodo.Derecha, resultado, idsVehiculos);
+            }
+        }
+
+
+
+        // TablaPostOrden_Vehiculos
+        public List<Nodo_Servicio> TablaPostOrden_Vehiculos(List<int> idsVehiculos)
+        {
+            List<Nodo_Servicio> resultado = new List<Nodo_Servicio>();
+            PostOrdenVehiculosRecursivo(raiz, resultado, idsVehiculos);
+            return resultado;
+        }
+
+        private void PostOrdenVehiculosRecursivo(Nodo_Servicio nodo, List<Nodo_Servicio> resultado, List<int> idsVehiculos)
+        {
+            if (nodo != null)
+            {
+                PostOrdenVehiculosRecursivo(nodo.Izquierda, resultado, idsVehiculos);
+                PostOrdenVehiculosRecursivo(nodo.Derecha, resultado, idsVehiculos);
+                if (idsVehiculos.Contains(nodo.Id_Vehiculo))
+                    resultado.Add(nodo);
+            }
+        }
+
+
+
+        // Servicios_Vehiculos
+        public List<int> Servicios_Vehiculos(List<int> idsVehiculos)
+        {
+            List<int> resultado = new List<int>();
+            InOrdenVehiculosRecursivoIds(raiz, resultado, idsVehiculos);
+            return resultado;
+        }
+
+        private void InOrdenVehiculosRecursivoIds(Nodo_Servicio nodo, List<int> resultado, List<int> idsVehiculos)
+        {
+            if (nodo != null)
+            {
+                InOrdenVehiculosRecursivoIds(nodo.Izquierda, resultado, idsVehiculos);
+                if (idsVehiculos.Contains(nodo.Id_Vehiculo))
+                    resultado.Add(nodo.Id);
+                InOrdenVehiculosRecursivoIds(nodo.Derecha, resultado, idsVehiculos);
+            }
+        }
+
+    public Nodo_Servicio Buscar(int id)
+        {
+            return BuscarRecursivo(raiz, id);
+        }
+
+        private Nodo_Servicio BuscarRecursivo(Nodo_Servicio nodo, int id)
+        {
+            if (nodo == null || nodo.Id == id)
+            {
+                return nodo; // Retorna el nodo si lo encuentra o null si no existe
+            }
+
+            if (id < nodo.Id)
+            {
+                // Buscar en el subárbol izquierdo si el ID es menor
+                return BuscarRecursivo(nodo.Izquierda, id);
+            }
+            else
+            {
+                // Buscar en el subárbol derecho si el ID es mayor
+                return BuscarRecursivo(nodo.Derecha, id);
+            }
+
+        }
+
+
+
+}
 }

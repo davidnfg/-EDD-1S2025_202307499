@@ -200,6 +200,35 @@ namespace code.structures.simple_list{
             return false;
         }
 
+        public bool ExisteCorreo(string correo)
+        {
+            Nodo_Usuario? actual = cabeza;
+            while (actual != null)
+            {
+                if (actual.Correo.Equals(correo, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+                actual = actual.Siguiente;
+            }
+            return false;
+        }
+
+        public int ObtenerMaxID()
+        {
+            int maxID = 0;
+            Nodo_Usuario? actual = cabeza;
+            while (actual != null)
+            {
+                if (actual.Id > maxID)
+                {
+                    maxID = actual.Id;
+                }
+                actual = actual.Siguiente;
+            }
+            return maxID;
+        }
+
     }
 
 }

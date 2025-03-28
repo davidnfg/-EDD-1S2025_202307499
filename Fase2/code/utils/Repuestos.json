@@ -11,4 +11,32 @@
     "Detalles": "Se usa para laa mezcla de aire y combustible.",
     "Costo": 15.75
     }
+    ,
+    {
+        "ID": 3,
+        "Repuesto": "Filtro de aire",
+        "Detalles": "Filtra impurezas del aire que entra al motor.",
+        "Costo": 10.50
+    }
+    ,
+    {
+        "ID": 4,
+        "Repuesto": "Filtro de gasolina",
+        "Detalles": "Filtra impurezas del combustible.",
+        "Costo": 20.50
+    }
+    ,
+    {
+        "ID": 5,
+        "Repuesto": "Aceite de motor",
+        "Detalles": "Lubrica las piezas del motor.",
+        "Costo": 30.50
+    }
+    ,
+    {
+        "ID": 6,
+        "Repuesto": "Llantas",
+        "Detalles": "Permite el contacto del vehículo con el suelo.",
+        "Costo": 100.50
+    }
     ]

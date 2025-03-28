@@ -12,5 +12,34 @@
     "Marca": "Toyota Corolla",
     "Modelo": 2010,
     "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 3,
+        "ID_Usuario": 3,
+        "Marca": "MERCES BENZ",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 4,
+        "ID_Usuario": 3,
+        "Marca": "RAM",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 5,
+        "ID_Usuario": 3,
+        "Marca": "LAMBO",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 6,
+        "ID_Usuario": 5,
+        "Marca": "MERCES BENZ",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
     }
+
     ]
