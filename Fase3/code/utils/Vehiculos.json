@@ -1,0 +1,45 @@
+[
+    {
+    "ID": 1,
+    "ID_Usuario": 1,
+    "Marca": "Honda Civic",
+    "Modelo": 2005,
+    "Placa": "XZJ7H9K"
+    },
+    {
+    "ID": 2,
+    "ID_Usuario": 2,
+    "Marca": "Toyota Corolla",
+    "Modelo": 2010,
+    "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 3,
+        "ID_Usuario": 3,
+        "Marca": "MERCES BENZ",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 4,
+        "ID_Usuario": 3,
+        "Marca": "RAM",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 5,
+        "ID_Usuario": 3,
+        "Marca": "LAMBO",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    },
+    {
+        "ID": 6,
+        "ID_Usuario": 5,
+        "Marca": "MERCES BENZ",
+        "Modelo": 2010,
+        "Placa": "JKS8T5A"
+    }
+
+    ]

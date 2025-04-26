@@ -1,0 +1,18 @@
+[
+    {
+        "ID": 1,
+        "ID_Repuesto": 2,
+        "ID_Vehiculo": 3,
+        "Detalles": "Cambio de aceite",
+        "Costo": 200.00,
+        "Metodo_Pago": "Efectivo"
+    },
+    {
+        "ID": 2,
+        "ID_Repuesto": 4,
+        "ID_Vehiculo": 4,
+        "Detalles": "Cambio de llantas",
+        "Costo": 500.00,
+        "Metodo_Pago": "Tarjeta de Crédito"
+    }
+]
