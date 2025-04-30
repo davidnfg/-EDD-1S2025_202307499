@@ -1,11 +1,13 @@
 using Gtk;
 using code.structures.tree_binary;
 using code.structures.merkle;
+using code.structures.double_list;
 
 namespace code.interfaces
 {
     public class UserWindow : Window
     {
+        private Button verServiciosButton;
         private Button verVehiculosButton;
         private Button cerrarSesionButton;
         private Button verFacturasButton;
@@ -29,7 +31,11 @@ namespace code.interfaces
             var usuario = code.data.Variables.usuarioActual;
             bienvenidaLabel.Text = $"Bienvenido, {usuario.Nombres} {usuario.Apellidos}";
 
-            verVehiculosButton = new Button("Ver Servicios");
+            verServiciosButton = new Button("Ver Servicios");
+            verServiciosButton.Clicked += OnverServiciosButtonClicked;
+            vbox.PackStart(verServiciosButton, false, false, 0);
+
+            verVehiculosButton = new Button("Ver tus vehiculos");
             verVehiculosButton.Clicked += OnVerVehiculosButtonClicked;
             vbox.PackStart(verVehiculosButton, false, false, 0);
 
@@ -49,7 +55,7 @@ namespace code.interfaces
             ShowAll();
         }
 
-        private void OnVerVehiculosButtonClicked(object sender, EventArgs e)
+        private void OnverServiciosButtonClicked(object sender, EventArgs e)
         {
             int idUsuario = code.data.Variables.usuarioActual.ID;
             List<int> List_Ids_vehiculos = code.data.Variables.listaVehiculos.ListarVehiculos_Usuario(idUsuario);
@@ -59,6 +65,13 @@ namespace code.interfaces
             List<Nodo_Servicio> List_Servicios_Usuarios_PostOrden = code.data.Variables.arbolServicios.TablaPostOrden_Vehiculos(List_Ids_vehiculos);
 
             new UserWindowTableServices(List_Servicios_Usuarios_InOrden, List_Servicios_Usuarios_PreOrden, List_Servicios_Usuarios_PostOrden);
+        }
+        private void OnVerVehiculosButtonClicked(object sender, EventArgs e)
+        {
+            int idUsuario = code.data.Variables.usuarioActual.ID;
+
+            // Crear la ventana de visualización de vehículos
+            new VisualizacionVehiculos(idUsuario);
         }
 
         private void OnVerFacturasButtonClicked(object sender, EventArgs e)
