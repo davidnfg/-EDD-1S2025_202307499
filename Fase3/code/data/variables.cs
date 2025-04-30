@@ -3,6 +3,7 @@ using code.structures.tree_avl;
 using code.structures.tree_binary;
 using code.structures.double_list;
 using code.structures.merkle;
+using code.interfaces.graph;
 using System.Net.NetworkInformation;
 using Pango;
 
@@ -31,6 +32,8 @@ namespace code.data
 
         //Facturas
         public static MerkleTree arbolFacturas = new MerkleTree();
+
+        public static GrafoNoDirigido grafo = new GrafoNoDirigido();
         
     }
 }

@@ -196,11 +196,16 @@ namespace code.structures.merkle
             int nodeId = nodeIds[node.Hash];
 
             string label;
-            if (node.Factura != null) 
+            if (node.Factura != null) // Nodo hoja (factura)
             {
-                label = $"\"Factura {node.Factura.ID}\\nTotal: {node.Factura.Total}\\nHash: {node.Hash.Substring(0, 8)}...\"";
+                label = $"\"ID: {node.Factura.ID}\\n" +
+                        $"ID_SERVICIO: {node.Factura.ID_Servicio}\\n" +
+                        $"TOTAL: {node.Factura.Total}\\n" +
+                        $"FECHA: {node.Factura.Fecha}\\n" +
+                        $"METODO: {node.Factura.MetodoPago}\\n" +
+                        $"Hash: {node.Hash.Substring(0, 8)}...\"";
             }
-            else 
+            else // Nodo interno
             {
                 label = $"\"Hash: {node.Hash.Substring(0, 8)}...\"";
             }

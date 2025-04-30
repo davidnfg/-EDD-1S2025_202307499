@@ -91,6 +91,11 @@ namespace code.interfaces
             code.utils.Utilidades.GenerarArchivoDot("Usuarios", CodigoDot_Usuarios);
             code.utils.Utilidades.ConvertirDotAImagen("Usuarios.dot");
 
+            //Grafo no dirigido
+            string CodigoDot_Grafo = code.data.Variables.grafo.GenerarDot();
+            code.utils.Utilidades.GenerarArchivoDot("Grafo", CodigoDot_Grafo);
+            code.utils.Utilidades.ConvertirDotAImagen("Grafo.dot");
+
 
             //Vehiculos
             string CodigoDot_Vehiculos = code.data.Variables.listaVehiculos.GraficarGraphviz();

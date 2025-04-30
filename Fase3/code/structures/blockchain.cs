@@ -155,35 +155,46 @@ namespace code.structures.blockchain{
         public string GenerateDot()
         {
             StringBuilder dot = new StringBuilder();
-            dot.AppendLine("digraph Blockchain {"); 
+            dot.AppendLine("digraph Blockchain {");
             dot.AppendLine("    node [shape=record];");
-            dot.AppendLine("    graph [rankdir=LR];"); 
-            dot.AppendLine("    subgraph cluster_0 {"); 
-            dot.AppendLine("        label=\"Usuarios\";"); 
+            dot.AppendLine("    graph [rankdir=LR];");
+            dot.AppendLine("    subgraph cluster_0 {");
+            dot.AppendLine("        label=\"Usuarios\";");
+
             if (Head == null)
             {
-                dot.AppendLine("  empty [label=\"Cadena vacía\"];"); 
+                dot.AppendLine("  empty [label=\"Cadena vacía\"];");
             }
             else
             {
                 Block current = Head;
                 while (current != null)
                 {
-                    string hashDisplay = current.Hash.Length >= 8 ? current.Hash.Substring(0, 8) + "..." : current.Hash;
-                    string prevHashDisplay = current.PreviousHash.Length >= 8 ? current.PreviousHash.Substring(0, 8) + "..." : current.PreviousHash;
+                    // Deserializar los datos del usuario
+                    User usuario = JsonConvert.DeserializeObject<User>(current.Data);
 
-                    string nodeLabel = $"\"Bloque {current.Index}\\nHash: {hashDisplay}\\nPrevious: {prevHashDisplay}\"";
+                    // Crear la etiqueta del nodo con los datos en el orden especificado
+                    string nodeLabel = $"\"Bloque {current.Index}\\n" +
+                                    $"TIMESTAMP: {current.Timestamp}\\n" +
+                                    $"DATA: [ID: {usuario.ID}, Nombres: {usuario.Nombres}, Apellidos: {usuario.Apellidos}, Correo: {usuario.Correo}, Edad: {usuario.Edad}, Contraseña: {usuario.Contrasenia}]\\n" +
+                                    $"NONCE: {current.Nonce}\\n" +
+                                    $"PREVIOUS HASH: {current.PreviousHash}\\n" +
+                                    $"HASH: {current.Hash}\"";
+
                     dot.AppendLine($"  block{current.Index} [label={nodeLabel}];");
 
+                    // Conectar el bloque actual con el siguiente
                     if (current.Next != null)
                     {
                         dot.AppendLine($"  block{current.Index} -> block{current.Next.Index};");
                     }
+
                     current = current.Next;
                 }
             }
 
-            dot.AppendLine("}}"); // Cerrar el grafo
+            dot.AppendLine("    }"); // Cerrar el subgrafo
+            dot.AppendLine("}"); // Cerrar el grafo
             return dot.ToString();
         }
 

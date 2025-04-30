@@ -115,12 +115,15 @@ public class CargaMasivaGTK : Window
                         try
                         {
                             // Obtener los datos del servicio desde el JSON
-                            int id = (int)item["ID"];
-                            int idRepuesto = (int)item["ID_Repuesto"];
-                            int idVehiculo = (int)item["ID_Vehiculo"];
+                            int id = (int)item["Id"];
+                            int idRepuesto = (int)item["Id_Repuesto"];
+                            int idVehiculo = (int)item["Id_Vehiculo"];
                             string detalles = (string)item["Detalles"];
                             double costoServicio = (double)item["Costo"];
-                            string metodoPago = (string)item["Metodo_Pago"];
+
+                           string[] metodosPago = { "Efectivo", "Tarjeta de Crédito", "Tarjeta de Débito" };
+                            Random random = new Random();
+                            string metodoPago = metodosPago[random.Next(metodosPago.Length)];
 
                             // Buscar el repuesto y el vehículo en sus respectivas estructuras
                             var repuesto = code.data.Variables.arbolRepuestos.Buscar(idRepuesto);
@@ -140,7 +143,7 @@ public class CargaMasivaGTK : Window
 
                             // Insertar el servicio en el árbol
                             code.data.Variables.arbolServicios.Insertar(id, idRepuesto, idVehiculo, detalles, costoServicio, metodoPago);
-                            Console.WriteLine($"Servicio agregado: ID={id}, Id_Repuesto={idRepuesto}, Id_Vehículo={idVehiculo}, Detalles={detalles}, Costo Servicio={costoServicio}");
+                            Console.WriteLine($"Servicio agregado: ID={id}, Id_Repuesto={idRepuesto}, Id_Vehículo={idVehiculo}, Detalles={detalles}, Costo Servicio={costoServicio}, Método Pago={metodoPago}");
 
                             // Calcular el total para la factura
                             double total = costoServicio + repuesto.Costo;

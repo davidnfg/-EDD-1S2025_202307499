@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Text;
+using code.interfaces.graph;
+using code.data;
 
 
 
@@ -64,6 +66,26 @@ namespace code.structures.tree_binary
             {
                 // Si el árbol no está vacío, llamamos al método recursivo para insertar el nodo
                 InsertarRecursivo(raiz, nuevo);
+            }
+        }
+
+        public void InsertarServiciosEnGrafo(ArbolBinario arbolServicios)
+        {
+            // Obtenemos todos los nodos del árbol en un recorrido InOrden
+            var servicios = arbolServicios.TablaInOrden();
+
+            if (servicios.Count == 0)
+            {
+                Console.WriteLine("El árbol binario no contiene servicios.");
+                return;
+            }
+
+            foreach (var servicio in servicios)
+            {
+                Console.WriteLine($"Procesando servicio: Vehículo={servicio.Id_Vehiculo}, Repuesto={servicio.Id_Repuesto}");
+                string idVehiculo = servicio.Id_Vehiculo.ToString();
+                string idRepuesto = servicio.Id_Repuesto.ToString();
+                code.data.Variables.grafo.Insertar(idVehiculo, idRepuesto);
             }
         }
 
