@@ -77,14 +77,14 @@ Busca el nodo con el ID especificado
 - Es especialmente útil para depuración y visualización de la estructura
 
 
-### Lista Enlazada Simple
+### BlockChain
 
 ## Estructura Básica
 Implementa una **lista enlazada simple** para administrar usuarios con sus datos personales.
 
 ### Componentes Principales
 
-#### 1. Clase `Nodo_Usuario`
+#### 1. Clase `User`
 
 - `Id:`Identificador único
 - `Nombres:` Nombre(s) del usuario
@@ -92,38 +92,62 @@ Implementa una **lista enlazada simple** para administrar usuarios con sus datos
 - `Correo:`  Correo electrónico
 - `Edad :` Edad en años
 - `Contrasenia:` Contraseña del
-- `Nodo_Usuario? Siguiente:` Enlace al siguiente nodo
 
-### 2. Clase ListaEnlazada
+
+### 2. Clase `Block`
+Representa un bloque en la cadena.
+
+Propiedades:
+- `Index`: Número del bloque en la cadena.
+- `Timestamp`: Fecha y hora de creación del bloque.
+- `Data`: Información del usuario en formato JSON.
+- `Nonce`: Número utilizado para la prueba de trabajo.
+- `PreviousHash`: Hash del bloque anterior.
+- `Hash`: Hash único del bloque actual.
+- `Next`: Referencia al siguiente bloque en la cadena.
+
+Métodos:
+
+- `CalculateHash()`: Calcula el hash del bloque usando SHA-256.
+- `MineBlock()`: Realiza la prueba de trabajo para encontrar un hash que comience con "0000".
+
+### 3. Clase `Blockchain`
+
+Representa la cadena de bloques como una lista simplemente enlazada.
+Propiedades:
+- `Head`: Referencia al primer bloque de la cadena.
+
+Métodos principales:
+- `AddBlock()`: Agrega un nuevo bloque a la cadena.
+- `GenerateJson()`: Genera una representación JSON de toda la cadena.
+- `GenerateDot()`: Genera un archivo DOT para visualizar la cadena con Graphviz.
+- `AnalyzeBlockchain()`: Verifica la integridad de la cadena.
+- `Buscar()`: Busca un usuario por ID.
+- `ActualizarUsuario()`: Actualiza los datos de un usuario en la cadena.
+- `ObtenerMaxID()`: Obtiene el ID más alto en la cadena.
+- `ExisteCorreo()`: Verifica si un correo ya existe en la cadena.
+- `ValidarContrasenia()`: Valida la contraseña de un usuario.
+- `BuscarPorCorreo()`: Busca un usuario por correo.
+
 #### Funcionamiento Principal
-**Agregar Usuarios**
+- **Agregar Bloques**:
+Se crea un nuevo bloque con los datos del usuario.
+Si es el primer bloque, se establece como la cabeza de la cadena.
+Si no, se recorre la cadena hasta el último bloque y se enlaza el nuevo bloque.
 
-*Cómo funciona:*
-- Crea un nuevo nodo con los datos
+- **Prueba de Trabajo**:
+Cada bloque realiza una prueba de trabajo para encontrar un hash que comience con "0000".
+Esto asegura la integridad y seguridad de la cadena.
 
-- Si la lista está vacía, lo establece como cabeza
+- **Búsqueda y Actualización**:
+Los usuarios pueden buscarse por ID o correo.
+Los datos de un usuario pueden actualizarse, recalculando los hashes de los bloques afectados.
 
-- Si no, recorre hasta el final y lo añade
+- **Validación de la Cadena**:
+Se verifica que los hashes de los bloques sean válidos y que los enlaces entre bloques sean consistentes.
 
-**Búsquedas**
-
-*Características:*
-
-- Busca por correo (case-insensitive) o por ID
-
-- Retorna el nodo completo o null
-
-- ExisteCorreo devuelve verdadero/falso.
-
-**Eliminar Usuarios**
-
-*Proceso:*
-- Busca el nodo con el ID
-
-- Reconfigura los enlaces:
-
-   Si es la cabeza: mueve la cabeza al siguiente
- Si no: el nodo anterior apunta al siguiente del eliminado
+- **Visualización**:
+La cadena puede representarse en formato JSON o como un grafo DOT para su visualización con Graphviz.
 
 ### Árbol AVL
 
@@ -208,88 +232,71 @@ Casos:
 - ObtenerAltura()	Calcula altura de un nodo
 - ObtenerBalance()	Calcula factor de balanceo (altura izquierda - altura derecha)
 
-### Árbol B
+### ARBOL DE MERKLE
 
 #### Estructura Básica
 Implementa un **árbol B** de orden 5 para almacenar y gestionar facturas con operaciones eficientes de inserción, búsqueda y eliminación.
 
-####  Componentes Principales
+###  Componentes Principales
 
 #### 1. Clase `Factura`
 - `Id`: Identificador único
 - `Id_Servicio`: ID del servicio asociado
 - `Total`:  Monto total de la factura
+- `Fecha`: Fecha de emisión de la factura.
+- `MetodoPago`: Método de pago utilizado.
 
-2. Clase NodoArbolB
+#### 2. Clase `MerkleNode`
 
-    - `List<Factura> Claves:` Facturas almacenadas (máx. 4)
-    - `List<NodoArbolB> Hijos:` Punteros a hijos (máx. 5)
-    - `EsHoja:` Indica si es nodo hoja
-    
-    Métodos auxiliares:
+Representa un nodo en el árbol de Merkle.
 
-    - `public bool EstaLleno()`:  Verifica si tiene 4 claves
-    - `public bool TieneMinimoClaves()`: Verifica si tiene al menos 2 claves.
+Propiedades:
+- `Hash`: Hash del nodo (calculado a partir de los datos o de los hashes de los hijos).
+- `Left`: Referencia al hijo izquierdo.
+- `Right`: Referencia al hijo derecho.
+- `Factura`: Factura asociada (solo para nodos hoja).
 
+Constructores:
+- `Nodo hoja`: Se crea a partir de una factura.
+- `Nodo interno`: Se crea combinando los hashes de los hijos izquierdo y derecho.
+
+Métodos:
+- `CalculateHash()`: Calcula el hash combinado de los hijos izquierdo y derecho.
  
- 3. Clase ArbolB
+#### 3. Clase `MerkleTree`
+Representa el árbol de Merkle completo.
 
-**Operaciones Principales**
+Propiedades:
+- `Leaves`: Lista de nodos hoja (facturas).
+- `Root`: Nodo raíz del árbol.
 
-- **Inserción**
+Métodos principales:
+- `Insert()`: Inserta una nueva factura en el árbol.
+- `BuildTree()`: Reconstruye el árbol a partir de las hojas.
+- `GenerateDot()`: Genera un archivo DOT para visualizar el árbol con Graphviz.
+- `Buscar()`: Busca una factura por su ID.
+- `ObtenerFacturasPorServicios()`: Obtiene facturas asociadas a una lista de IDs de servicios.
+- `Eliminar()`: Elimina una factura por su ID y reconstruye el árbol.
 
- *Proceso:*
+#### Funcionamiento Principal
+- **Inserción de Facturas:**
+Se crea una factura y un nodo hoja con su hash.
+La factura se agrega a la lista de hojas.
+El árbol se reconstruye para actualizar los hashes de los nodos internos y la raíz.
 
-- Si la raíz está llena: Crea nueva raíz.
+- **Construcción del Árbol**:
+A partir de las hojas, se agrupan nodos en pares y se crean nodos internos combinando sus hashes.
+Este proceso se repite hasta que solo queda un nodo, que se convierte en la raíz.
 
-- Divide la raíz actual
+- **Verificación de Integridad**:
+Cada nodo contiene un hash que depende de sus hijos. Si los datos de una factura cambian, el hash de la raíz también cambia, lo que permite detectar modificaciones.
 
-- Inserta recursivamente manteniendo el orden
+- **Búsqueda y Eliminación:**
+Las facturas pueden buscarse por su ID recorriendo la lista de hojas.
+Para eliminar una factura, se elimina su nodo hoja y se reconstruye el árbol.
 
-*Características:*
-
-- Complejidad: O(log n)
-
-Auto-balanceante
-- **Búsqueda**
- *Funcionamiento:*
-
-- Búsqueda binaria dentro de cada nodo
-
-- Recorre hacia abajo según comparación de IDs
-
-Retorna null si no exist
-- **Eliminación**
-*Estrategias:*
-
-- Hoja: Remoción directa si no viola invariantes
-
-- Nodo interno:
-
-- Reemplaza con predecesor/sucesor
-
-- Fusiona nodos si es necesario
-
-*Casos especiales:*
-
-- Préstamo de claves a hermanos
-
-- Fusión de nodos
-
-##### Recorridos del Árbol
-| Método | Orden | Utilidad |
-|-----------|-----------|-----------|
-| RecorridoInOrden() | ID ascendente| Reportes ordenados |
-| ObtenerFacturasPorServicios() | Personalizado| Consultas específicas|
-
-#### Rotaciones y balanceo
-
-| Metodo | Funcion |
-|-----------|-----------|
-| DividirHijo()| Divide nodos llenos|
-| TomaPrestadoDelAnterior() | Rota claves desde hermano izquierdo |
-| TomaPrestadoDelSiguiente() | Rota claves desde hermano derecho |
-| TomaPrestadoDelSiguiente()| Combina nodos con pocas claves |
+- **Visualización:**
+El árbol puede representarse en formato DOT para su visualización con Graphviz. Los nodos muestran información como el ID de la factura, el total y el hash.
 
 ### Árbol Binario de Búsqueda 
 

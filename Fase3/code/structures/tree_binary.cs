@@ -127,24 +127,27 @@ namespace code.structures.tree_binary
 
 
 
-        // Método para generar el archivo .dot para Graphviz
+       // Método para generar el archivo .dot para Graphviz en InOrden
         public string GraficarGraphviz()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("digraph BST {");
             sb.AppendLine("    node [shape=rectangle];");
-            if (raiz != null)
-            {
-                GenerarDotRecursivo(raiz, sb);
-            }
+
+            // Llamar al método recursivo para generar el archivo .dot en InOrden
+            GenerarDotRecursivoInOrden(raiz, sb);
+
             sb.AppendLine("}");
             return sb.ToString();
-        }
+}
 
-        private void GenerarDotRecursivo(Nodo_Servicio nodo, StringBuilder sw)
+        private void GenerarDotRecursivoInOrden(Nodo_Servicio nodo, StringBuilder sw)
         {
             if (nodo != null)
             {
+                // Recorrer el subárbol izquierdo
+                GenerarDotRecursivoInOrden(nodo.Izquierda, sw);
+
                 // Formato del nodo con toda la información
                 string nodoLabel = $"\"{nodo.Id}\" [label=\"Id: {nodo.Id}\\nRepuesto: {nodo.Id_Repuesto}\\nVehiculo: {nodo.Id_Vehiculo}\\nDetalles: {nodo.Detalles}\\nCosto: {nodo.Costo}\"]";
                 sw.AppendLine($"    {nodoLabel};");
@@ -153,13 +156,14 @@ namespace code.structures.tree_binary
                 if (nodo.Izquierda != null)
                 {
                     sw.AppendLine($"    \"{nodo.Id}\" -> \"{nodo.Izquierda.Id}\";");
-                    GenerarDotRecursivo(nodo.Izquierda, sw);
                 }
                 if (nodo.Derecha != null)
                 {
                     sw.AppendLine($"    \"{nodo.Id}\" -> \"{nodo.Derecha.Id}\";");
-                    GenerarDotRecursivo(nodo.Derecha, sw);
                 }
+
+                // Recorrer el subárbol derecho
+                GenerarDotRecursivoInOrden(nodo.Derecha, sw);
             }
         }
 

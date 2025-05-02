@@ -18,9 +18,14 @@ Está es la ventana principal, se te muestra un mensaje de bienvenida y se ven l
 
 ![Texto alternativo](/img/serviU.png)
 
+- Ver tus vehiculos: Aqui podras observar los vehiculos que posees.
+
+![Texto alternativo](/img/carros.png)
+
 - Ver Facuturas: Aquí podrás observar las facturas que tienes pendientes de pagar.
 
 ![Texto alternativo](/img/FactuUser.png)
+
 - Eliminar Facturas: Aquí podrás cancelar tus facturas e igualmente observarlas con el botón de buscar para verificar que esa es la que quieres cancelar.
 
 ![Texto alternativo](/img/EliminarFac.png)
@@ -34,13 +39,13 @@ Esta es la ventana que se muestra al iniciar sesión con el admin y se ven las s
 - Carga Masiva:
 Permite hacer una carga masiva de datos de usuarios, vehiculos y repuestos mediante un archivo JSON.
 ![Texto alternativo](/img/Carga.png)
-- Gestion de identidades: Aquí podrás ver los usuarios y vehiculos, así como eliminarlos.
+- Gestion de identidades: Aquí podrás ver los usuarios y agregar nuevos.
 ![Texto alternativo](/img/editU.png)
 ![Texto alternativo](/img/editU2.png)
 - Actualización de Repuestos: Aquí podrás actualizar el repuesto mediante el ID.
 ![Texto alternativo](/img/actualizar.png)
 - Generar Servicios: Aquí podrás generar sevicios mediante el ID del usuario, del repuesto y del vehiculo.
-![Texto alternativo](/img/Servcicio.png)
+![Texto alternativo](/img/Servicio.png)
 - Visualizar Repuestos: Aqui podras visualizar los respuestos en distinos ordenes (InOrder, PreOrder, PostOrder).
 ![Texto alternativo](/img/Repuestos.png)
 

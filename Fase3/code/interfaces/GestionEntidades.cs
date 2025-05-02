@@ -185,16 +185,18 @@ namespace code.interfaces
         }
         private void MostrarMensajeError(string mensaje)
         {
-            MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, mensaje);
-            md.Run();
-            md.Destroy();
+            using (MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Error, ButtonsType.Ok, mensaje))
+            {
+                md.Run();
+            }
         }
 
         private void MostrarMensaje(string mensaje)
         {
-            MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, mensaje);
-            md.Run();
-            md.Destroy();
+            using (MessageDialog md = new MessageDialog(this, DialogFlags.Modal, MessageType.Info, ButtonsType.Ok, mensaje))
+            {
+                md.Run();
+            }
         }
 
         private void LimpiarCampos()
